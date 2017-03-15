@@ -115,6 +115,43 @@ void SumRec(struct node* head1, struct node* head2, struct node** result) {
   }
 }
 
+/* Add the linked in straight order */
+void SumLists2(struct node* head1, struct node* head2, struct node** result) {
+    struct node* curr1 = head1;
+    struct node* curr2 = head2;
+
+    int len1 = 0; //Length of first linked list
+    int len2 = 0; //Length of second linked list
+
+    /* Calculate the lenth of first linked list */
+    while(curr1!=NULL) {
+      len1++;
+      curr1 = curr1->next;
+    }
+    /* Calculate the length of second linked list */
+    while(curr2!=NULL) {
+      len2++;
+      curr2 = curr2->next;
+    }
+
+    if(len1==len2) {
+      SumRec(head1, head2, &result_rec);
+    }
+
+    /* Iterate the longer list till its shorter and call SumRec */
+    if(len1>len2) {
+        for(u=0; i<(len1-len2); i++) 
+            head1 = head1->next;
+        /* Need to get back carry somehow */
+        carry = SumRec(head1, head2, result);
+
+        while(head1!=NULL) {
+        
+
+        }
+
+}
+
 /* Print the linked list */
 void printer(struct node* head) {
   struct node* curr = head;
@@ -159,7 +196,8 @@ int main() {
    * (7->1->6->4) == 7164
    * (1->1->1->1) == 1111 ...duh...
    */
-  SumRec(head1, head2, &result_rec);
+  SumLists2(head1, head2, &result_rec);
+
   printf("Recursive Result is \n");
   printer(result);
   return 0;
