@@ -110,4 +110,6 @@ int main() {
 
   printer(head);
 
+  return 0;
+
 }
