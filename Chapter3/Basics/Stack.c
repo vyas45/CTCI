@@ -103,13 +103,26 @@ int main() {
   Push(stack, 4);
   Push(stack, 5);
 
+  printer(stack);
+  
   /* Underflow */
-  Pop(stack);
-  Pop(stack);
-  Pop(stack);
-  Pop(stack);
-  Pop(stack);
-  Pop(stack);
+  popper = Pop(stack);
+  printf("popped %d from the stack \n", popper);
+  popper = Pop(stack);
+  printf("popped %d from the stack \n", popper);
+  popper = Pop(stack);
+  printf("popped %d from the stack \n", popper);
+  popper = Pop(stack);
+  printf("popped %d from the stack \n", popper);
+  popper = Pop(stack);
+  printf("popped %d from the stack \n", popper);
+  popper = Pop(stack);
+  printf("popped %d from the stack \n", popper);
+
+  /* This should cause underflow */
+  popper = Pop(stack);
+  printf("popped %d from the stack \n", popper);
+
 
   /* Empty print */
   printer(stack);
