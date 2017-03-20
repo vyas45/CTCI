@@ -3,6 +3,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 /* Define the structure for a tree node */
 struct node {
@@ -33,6 +34,21 @@ struct node* Insert(struct node* root, int data) {
   return root;
 }
 
+/* Search for a node in the tree */
+bool isNode(struct node* root, int data) {
+  if(root == NULL) return false;
+
+  /* Found the node */
+  if(root->data == data){
+    return true;
+  }
+  /* Otherwise treaverse sub-trees */
+  else {
+    return(isNode(root->left, data) || isNode(root->right, data));
+  }
+  return false;
+}
+
 /* Traverse the nodes inOrder */
 void Inorder(struct node* root) {
   if(root == NULL) return;
@@ -57,6 +73,18 @@ int main() {
 
   /* Print inOrder */
   Inorder(root);
+  printf("\n");
+
+  /* Is the node in the tree */
+  if(isNode(root, 4))
+    printf("Found 4 in the tree\n");
+  else
+    printf("Did not find 4 in the tree\n");
+  if(isNode(root, 7))
+    printf("Found 7 in the tree\n");
+  else
+    printf("Did not find 7 in the tree\n");
+
 
   return 0;
 }
