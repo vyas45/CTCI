@@ -68,6 +68,43 @@ void insertEdge(struct graph* g, int src, int dest) {
    g->degree[dest]++;
 }
 
+/* Remove an edge from the graph
+ * Removing an edge from the graph involves a 2 way removal
+ * because we are considering an undirected graph 
+ */
+void removeEdge(struct graph* g, int src, int dest) {
+  /* First look into the src->dest and remove dest */
+  struct Node* curr = g->arrList[src].head;
+
+  /* If it is the head */
+  if(curr->data == dest) {
+    g->arrList[src].head = curr->next;
+    g->degree[src]--;
+  }
+  while(curr->next!=NULL) {
+    if(curr->next->data == dest) {
+        curr->next = curr->next->next;
+        g->degree[src]--;
+    }
+    curr = curr->next;
+  }
+
+  /* Also remove the dest->src edge */
+  curr = g->arrList[dest].head;
+  /* If it is the head */
+  if(curr->data == src) {
+    g->arrList[dest].head = curr->next;
+    g->degree[dest]--;
+  }
+  while(curr->next!=NULL) {
+    if(curr->next->data == src) {
+        curr->next = curr->next->next;
+        g->degree[dest]--;
+    }
+    curr = curr->next;
+  }
+}
+
 /* Print the graph */
 void Printer(struct graph* g) {
   int i = 0;
@@ -91,6 +128,12 @@ int main() {
   insertEdge(g, 0, 2);
   insertEdge(g, 0, 1);
 
+  Printer(g);
+
+  removeEdge(g, 0, 1);
+  removeEdge(g, 0, 2);
+
+  printf("\n\n");
   Printer(g);
 
   return 0;
