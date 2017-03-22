@@ -49,6 +49,29 @@ bool isNode(struct node* root, int data) {
   return false;
 }
 
+/*
+ * Find the node and then delete it
+ * It is important to keep the tree balanced
+ * So for this copy the data from the left child to the current node 
+ * and then point left to the left->left
+ */
+bool deleteNode(struct node* root, int item) {
+    if(root == NULL) return false;
+
+    /* Found the node */
+    if(root->data ==  item) {
+      //Perform the removal
+      if(root->left == NULL && root->right == NULL) 
+          root = NULL; //It is a leaf node
+      else if(root->left !=NULL) {
+          root->data = root
+    }
+    /* Search the left and right subtree */
+    return(deleteNode(root->left, item) || deleteNode(root->right));
+
+
+}
+
 /* Traverse the nodes inOrder */
 void Inorder(struct node* root) {
   if(root == NULL) return;
@@ -84,6 +107,9 @@ int main() {
     printf("Found 7 in the tree\n");
   else
     printf("Did not find 7 in the tree\n");
+
+  /* Delete Node */
+  deleteNode(root, 4);
 
 
   return 0;
