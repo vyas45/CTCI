@@ -106,7 +106,7 @@ int main() {
 
   printf("\n");
   struct node* root1 = NULL;
-  root1 = arrToBST(arr, 0, count-1);
+  root1 = arrToBST(arr, 0, count1);
 
   return 0;
 }
