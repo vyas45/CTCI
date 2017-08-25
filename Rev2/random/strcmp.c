@@ -9,17 +9,14 @@ bool mystrcmp(char* str1, char *str2) {
   char* s2 = str2;
   int len1, len2 = 0;
 
-  while(*s1) {
-    len1++;
+  while(*s1 && *s2) {
+    if(*s1 != *s2) return false;
+    s1++;
+    s2++;
   }
-  while(*s2) {
-    len2++;
-  }
-  if(len1!=len2) return false;
-  else {
-    while(*str1)
-      return(*str1++ == *str2++);
-  }
+  if(*s2 || *s1) return false;
+
+  return true; //Reached here , all good
 }
 
 int main() {
