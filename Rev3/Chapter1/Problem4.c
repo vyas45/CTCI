@@ -34,7 +34,7 @@ int main() {
   char* str = malloc(sizeof(char) * 20);
 
   while(1) {
-    scanf("%s", str);
+    scanf("%s\n", str);
     if(isPermPalin(str))
       printf("Is a perm of palin\n");
     else
