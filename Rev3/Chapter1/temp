@@ -1,0 +1,41 @@
+oid compRecur(char* str, char* dest, int index, int count) {
+  static char temp = '\0';
+  if(!*str) {
+    printf("Cound of %c is %d\n", temp, count);
+    sprintf(*(dest+index), "%d", count);
+    return;
+  }
+  else {
+    if(!temp) {
+      temp = *str;
+      *dest = *str;
+      index++;
+      count++;
+      compRecur(str+1, dest, index, count);
+    }
+    else {
+      if(temp == *str) {
+        printf("%c and %c are same\n", temp, *str);
+        count = count+1;
+        str = str+1;
+        compRecur(str, dest, index, count);
+      }
+      else {
+        printf("%c and %c are NOT same\n", temp, *str);
+        //*dest = temp;
+        //*(dest+1) = count;
+        sprintf(*(dest+index), "%d", count);
+        printf("Count of %c is %d\n", temp, count);
+        count = 1;
+        temp = *str;
+        compRecur(str+1, dest, index, count);
+      }
+    }
+  }
+}
+
+void strCompress1(char* str, char* dest) {
+  compRecur(str, dest, 0, 0);
+}
+
+
