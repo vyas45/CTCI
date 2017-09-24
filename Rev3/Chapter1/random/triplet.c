@@ -60,7 +60,7 @@ void findTriplet(int arr[], int size, int x) {
 }
 
 int main() {
-  int arr[]  = {12, 3, 4, 1, 6, 9};
+  int arr[]  = {-1, 0, 1, 2, -1, -4};
   int size = sizeof(arr)/sizeof(int);
   int X = 0;
 
