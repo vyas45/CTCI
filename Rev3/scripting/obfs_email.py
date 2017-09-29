@@ -2,13 +2,13 @@
 import re
 import sys
 
-def emailWorker(fname):
-    mailReg = re.compile(r'([\w\.-]+)@([\w\.-]+)')
-    with open(fname) as f:
-        fread = f.read()
-        print re.findall(mailReg, fread)
 
+def obfs_email(fname):
+    regmail = re.compile(r'[\w\.-]+@[\w\.-]+')
+    with open(fname) as qfile:
+        mails = re.findall(regmail, qfile.read())
+    print mails
 
-fname =  sys.argv[1]
-
-emailWorker(fname)
+if __name__ == '__main__':
+    fname = sys.argv[1]
+    obfs_email(fname)
