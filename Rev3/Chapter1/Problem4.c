@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <ctype.h>
 
 /*
  * Only one character can occur odd number of times
@@ -14,7 +15,9 @@ bool isPermPalin(char* str) {
   bool flag = true;
 
   while(*str) {
-    countArr[*str]++;
+    if(!isspace(*str)) {
+      countArr[*str]++;
+    }
     str++;
   }
 
@@ -22,9 +25,8 @@ bool isPermPalin(char* str) {
     if(countArr[i] %2 != 0) {
       if(!flag)
         return flag; //Second odd
-      if(flag) {
+       else
         flag = false;
-      }
     }
   }
   return true;//All good
@@ -34,7 +36,7 @@ int main() {
   char* str = malloc(sizeof(char) * 20);
 
   while(1) {
-    scanf("%s\n", str);
+    fgets(str, 20, stdin);
     if(isPermPalin(str))
       printf("Is a perm of palin\n");
     else
